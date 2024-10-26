@@ -1,0 +1,46 @@
+## Installing PHP and the Laravel Installer
+Sebelum membuat aplikasi Laravel pertama Kita, pastikan bahwa mesin lokal Kita telah terpasang PHP, Composer, dan Laravel installer. Selain itu, Kita juga harus menginstal Node dan NPM agar dapat mengompilasi aset frontend aplikasi Kita.
+
+Jika Kita sudah memiliki PHP dan Composer, Kita dapat menginstal Laravel installer melalui Composer
+```bash
+composer global require laravel/installer
+```
+
+## Creating an Application
+Setelah Kita menginstal PHP, Composer, dan Laravel installer, Kita siap membuat aplikasi Laravel baru. Laravel installer akan meminta Kita untuk memilih framework pengujian, database, dan starter kit yang Kita inginkan:
+
+```bash
+laravel new example-app
+```
+
+Setelah aplikasi berhasil dibuat, Kita bisa memulai server pengembangan lokal Laravel, queue worker, dan Vite development server dengan menggunakan skrip dev pada Composer:
+
+```bash
+cd example-app
+composer run dev
+```
+
+Setelah server pengembangan dimulai, aplikasi Kita akan dapat diakses di browser pada http://localhost:8000. Selanjutnya, Kita siap untuk melanjutkan eksplorasi ke dalam ekosistem Laravel. Tentu saja, Kita mungkin juga ingin mengonfigurasi database.
+
+## Databases and Migrations
+Setelah Kita membuat aplikasi Laravel, mungkin Kita ingin menyimpan data di dalam database. Secara default, file konfigurasi `.env` aplikasi sudah diatur untuk menggunakan database **SQLite**.
+
+Menggunakan Database SQLite
+
+Saat aplikasi dibuat, Laravel secara otomatis membuat file `database/database.sqlite` dan menjalankan migrasi yang diperlukan untuk membuat tabel-tabel database.
+
+Jika Kita ingin menggunakan database lain seperti **MySQL** atau **PostgreSQL**, Kita bisa mengubah pengaturan di file `.env`. Misalnya, jika ingin menggunakan MySQL, ubah bagian `DB_*` di file `.env` menjadi seperti ini:
+
+```plaintext
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Jika Anda memilih untuk menggunakan database selain SQLite, buat database tersebut terlebih dahulu, lalu jalankan migrasi untuk membuat tabel-tabel Laravel dengan perintah ini:
+```bash
+php artisan migrate
+```

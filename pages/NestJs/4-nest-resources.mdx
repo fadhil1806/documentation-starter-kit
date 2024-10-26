@@ -1,0 +1,38 @@
+# CRUD generator (TypeScript only)
+
+Dalam konteks pengembangan aplikasi menggunakan NestJS, "CRUD generator"  merujuk pada kemampuan untuk secara otomatis menghasilkan semua kode boilerplate yang diperlukan untuk melakukan operasi CRUD (Create, Read, Update, Delete) pada suatu resource (misalnya, entitas User dan Product).
+
+### Langkah-langkah yang Terlibat dalam CRUD Generator
+- Module: Dengan menggunakan perintah nest g mo, kita dapat membuat modul untuk mengelompokkan kode yang terkait. Ini membantu dalam mengorganisir kode dan menetapkan batasan yang jelas.
+
+- Controller: Perintah nest g co digunakan untuk membuat controller yang mendefinisikan rute CRUD (atau query/mutasi untuk aplikasi GraphQL). Controller bertanggung jawab untuk menangani permintaan HTTP dan mengembalikan respons yang sesuai.
+
+- Service: Dengan nest g s, kita dapat membuat service yang akan mengimplementasikan dan mengisolasi logika bisnis. Service ini digunakan oleh controller untuk melakukan operasi pada data.
+
+- Entity Class/Interface: Kita perlu mendefinisikan bentuk data resource dengan membuat class atau interface yang sesuai.
+
+- Data Transfer Objects (DTO): Untuk mendefinisikan cara data akan dikirim melalui jaringan, kita dapat membuat DTO. DTO ini membantu dalam memvalidasi dan membentuk data yang diterima oleh aplikasi.
+
+### Menggunakan CRUD Generator di NestJS
+NestJS menyediakan generator (schematic) yang dapat membantu kita menghasilkan semua elemen di atas secara otomatis. Dengan menggunakan generator ini, kita dapat menjalankan satu perintah yang mencakup pembuatan modul, controller, service, dan semua komponen lainnya yang diperlukan untuk sebuah resource.
+
+```bash
+//nest g resource nama_folder
+nest g resource users
+```
+
+Perintah di atas akan menghasilkan semua komponen yang diperlukan untuk resource users, termasuk:
+
+1. Modul users.module.ts
+2. Controller users.controller.ts
+3. Service users.service.ts
+4. DTOs untuk request dan response
+5. Entitas untuk mendefinisikan struktur data
+
+### Manfaat
+- Mengurangi waktu dan usaha yang diperlukan untuk membangun endpoint baru.
+- Memastikan konsistensi dalam cara kita mendefinisikan resource.
+- Menghindari kesalahan yang mungkin terjadi saat menulis kode boilerplate secara manual.
+
+### Kesimpulan
+CRUD generator di NestJS merupakan alat yang sangat berguna untuk mempercepat pengembangan dan memastikan bahwa semua resource didefinisikan dengan cara yang terstruktur dan konsisten. Dengan memanfaatkan fitur ini, kamu bisa fokus pada logika bisnis dan fitur-fitur baru tanpa terjebak dalam pekerjaan repetitif yang membosankan.
