@@ -1,0 +1,50 @@
+# Models
+Model di Laravel adalah komponen penting dalam pengembangan aplikasi yang menggunakan arsitektur Model-View-Controller (MVC). Model berfungsi sebagai penghubung antara aplikasi dan database, memungkinkan pengembang untuk berinteraksi dengan data secara efisien.
+
+### Apa Itu Model di Laravel?
+Model dalam Laravel adalah representasi objek dari tabel dalam database. Setiap model biasanya merepresentasikan satu tabel, dan berfungsi untuk melakukan operasi CRUD (Create, Read, Update, Delete) tanpa perlu menulis query SQL secara manual. Model di Laravel menggunakan Eloquent ORM (Object-Relational Mapping), yang memudahkan pengembang dalam berinteraksi dengan database melalui objek.
+
+### Fitur Utama Model
+- Eloquent ORM: Memungkinkan interaksi dengan database menggunakan sintaks yang lebih sederhana dan berbasis objek.
+- Relasi: Model mendukung pengaturan relasi antar tabel, seperti one-to-many atau many-to-many.
+- Soft Deleting: Memungkinkan penghapusan data tanpa menghapusnya secara permanen dari database.
+- Mass Assignment: Memudahkan penugasan data ke model dengan menggunakan array.
+
+### Membuat Model
+Model dapat dibuat menggunakan perintah Artisan:
+
+```bash
+php artisan make:model NamaModel
+```
+
+Jika ingin membuat model sekaligus dengan migration, gunakan opsi -m:
+```bash
+php artisan make:model NamaModel -m
+```
+
+### Contoh Struktur Model
+```php filename="app/Models/Post.php" {3} copy
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    protected $table = 'posts';
+
+    // Menentukan kolom mana yang dapat diisi secara massal
+    protected $fillable = ['title', 'content'];
+
+    // Jika Anda ingin menambahkan relasi, misalnya dengan User, Anda bisa menambahkannya di sini
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+}
+```
+
+### Kesimpulan
+
+> Model adalah bagian integral dari Laravel yang memfasilitasi interaksi antara aplikasi dan database. Dengan fitur-fitur seperti Eloquent ORM dan kemampuan untuk mengatur relasi antar tabel, model membantu pengembang dalam membangun aplikasi yang lebih efisien dan terstruktur.

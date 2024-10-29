@@ -1,0 +1,59 @@
+# Migration
+Migration dalam Laravel adalah fitur yang memungkinkan pengembang untuk mengelola dan memodifikasi struktur database dengan lebih efisien menggunakan kode. 
+
+### Apa Itu Migration di Laravel?
+Migration adalah suatu mekanisme dalam Laravel yang memungkinkan pengembang untuk membuat, mengubah, dan menghapus tabel serta kolom dalam database secara otomatis. Dengan menggunakan migration, perubahan pada struktur database dapat dilakukan tanpa harus menghapus data yang ada, sehingga sangat berguna dalam pengembangan aplikasi yang memerlukan perubahan berulang pada skema database.
+
+### Fungsi Utama Migration
+1. Membuat Tabel: Migration memungkinkan Anda untuk membuat tabel baru dalam database.
+2. Mengubah Tabel: Anda dapat menambahkan kolom baru, mengubah tipe data kolom, atau menghapus kolom yang tidak diperlukan.
+3. Rollback: Jika ada kesalahan atau perubahan yang tidak diinginkan, migration juga menyediakan fungsi untuk membatalkan perubahan yang telah dilakukan (rollback) dengan mudah.
+
+### Struktur Migration
+Setiap file migration terdiri dari dua metode utama:
+- up(): Metode ini digunakan untuk mendefinisikan perubahan yang akan diterapkan ke database, seperti membuat tabel atau menambahkan kolom.
+- down(): Metode ini digunakan untuk membatalkan perubahan yang telah dilakukan oleh metode up(), misalnya dengan menghapus tabeL.
+
+```php filename="create_table_posts.php" {3} copy
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePostsTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('posts');
+    }
+}
+```
+
+### Cara Menggunakan Migration
+- Membuat Migration Baru: Anda dapat membuat migration baru menggunakan perintah Artisan:
+```bash
+php artisan make:migration create_posts_table
+```
+
+- Menjalankan Migration: Untuk menerapkan semua migration yang belum dijalankan, gunakan perintah:
+```bash
+php artisan migrate
+```
+
+- Rollback Migration: Jika perlu membatalkan perubahan, gunakan perintah:
+```bash
+php artisan migrate:rollback
+php artisan migrate:rollback --step=2 // Membatalkan dua migrasi terakhir, jika step 3, maka 3 migrasi terakhir.
+```
+
+### Kesimpulan
+> Migration di Laravel sangat membantu dalam pengelolaan struktur database, memudahkan pengembang dalam melakukan perubahan tanpa kehilangan data. Dengan memahami dan menggunakan fitur ini, proses pengembangan aplikasi menjadi lebih terstruktur dan efisien.

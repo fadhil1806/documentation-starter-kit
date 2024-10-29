@@ -1,0 +1,43 @@
+# Controller
+Controllers di Laravel adalah kelas PHP yang berfungsi untuk menangani permintaan HTTP yang masuk dan mengelola respons aplikasi terhadap permintaan tersebut. Mereka berperan sebagai perantara antara Model (data) dan View (antarmuka pengguna) dalam pola arsitektur Model-View-Controller (MVC).
+
+### Apa Itu Controllers di Laravel?
+Controllers mengelompokkan logika penanganan permintaan HTTP yang terkait ke dalam satu kelas, sehingga memudahkan pengorganisasian dan pemeliharaan kode.
+
+### Struktur
+Controllers biasanya disimpan dalam direktori app/Http/Controllers. Setiap controller dapat memiliki beberapa metode publik yang merespons permintaan HTTP tertentu, seperti index, store, show, edit, dan destroy untuk operasi CRUD (Create, Read, Update, Delete).
+
+### Membuat Controller
+Kita dapat membuat controller baru menggunakan perintah Artisan:
+
+```bash
+php artisan make:controller NamaController
+```
+
+Untuk membuat controller sumber daya yang mencakup metode umum untuk operasi CRUD, gunakan opsi --resource:
+
+```bash
+php artisan make:controller NamaController --resource
+```
+
+### Contoh Controller
+Berikut adalah contoh sederhana dari sebuah controller di Laravel:
+
+```php filename="app/Http/Controllers/Post.php" {3} copy
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function show()
+    {
+        // Mengarahkan ke rute post.index dengan semua data post
+        return view('post.index', ['post' => Post::get()]);
+    }
+}
+```
+
+### Kesimpulan
+> Controllers di Laravel memungkinkan pengembang untuk mengorganisir logika aplikasi dengan lebih baik, memisahkan kode berdasarkan fungsionalitas, dan memudahkan pemeliharaan serta pengembangan fitur baru. Dengan menggunakan controllers, Anda dapat membangun aplikasi web yang lebih terstruktur dan mudah dikelola.

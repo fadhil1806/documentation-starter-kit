@@ -1,0 +1,42 @@
+# Validasi Data
+Validasi dalam Laravel adalah proses untuk memastikan bahwa data yang dikirimkan melalui formulir memenuhi kriteria tertentu sebelum diproses lebih lanjut. Ini membantu menjaga integritas dan keamanan data dalam aplikasi Kita.
+
+### Apa Itu Validasi di Laravel?
+Memastikan bahwa input pengguna sesuai dengan aturan yang telah ditentukan, seperti tidak kosong, format yang benar, atau nilai unik dalam database.
+
+### Metode Validasi
+Laravel menyediakan beberapa cara untuk melakukan validasi:
+- Validasi Langsung di Controller: Menggunakan metode validate() pada objek Request.
+- Validator Facade: Menggunakan kelas Validator untuk membuat instance validator secara manual.
+- Form Request: Membuat kelas permintaan khusus yang mengorganisir logika validasi dan otorisasi.
+
+### Aturan Validasi
+Laravel memiliki banyak aturan validasi yang siap digunakan, seperti:
+- required: Field harus diisi.
+- string: Field harus berupa string.
+- email: Field harus berisi alamat email yang valid.
+- unique: Field harus memiliki nilai yang unik dalam tabel database tertentu.
+- max dan min: Mengatur batas maksimum dan minimum untuk panjang input.
+
+### Contoh Penggunaan
+```php filename="app/Http/Controllers/Post.php" {6, 1} copy
+use Illuminate\Http\Request;
+
+public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255|unique:users,title',
+    ]);
+
+    $title = $request->title;
+
+    // Data sudah divalidasi, bisa diproses lebih lanjut
+    return redirect('/users');
+}
+```
+
+### Menangani Kesalahan Validasi
+Jika validasi gagal, Laravel secara otomatis akan mengalihkan kembali pengguna ke halaman sebelumnya dengan pesan kesalahan yang dapat ditampilkan di tampilan.
+
+### Kesimpulan
+> Dengan menggunakan validasi, Anda dapat memastikan bahwa data yang diterima oleh aplikasi Anda adalah valid dan aman untuk diproses lebih lanjut

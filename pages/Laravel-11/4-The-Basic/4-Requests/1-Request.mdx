@@ -1,0 +1,25 @@
+# Illuminate\Http\Request
+Request di Laravel merujuk pada cara framework ini menangani dan memproses HTTP request yang masuk ke aplikasi. Ini merupakan bagian penting dari interaksi pengguna dengan aplikasi web, memungkinkan pengembang untuk mengakses data yang dikirim oleh pengguna melalui form, URL, dan header.
+
+### Apa Itu Request di Laravel?
+Laravel menggunakan kelas Illuminate\Http\Request untuk merepresentasikan dan mengelola HTTP request. Kelas ini menyediakan berbagai metode yang memungkinkan pengembang untuk mengakses informasi dari request, seperti parameter input, cookies, file yang diunggah, dan informasi lainnya.
+
+### Contoh Penggunaan
+Berikut adalah contoh bagaimana menggunakan Request dalam controller:
+```php filename="app/Http/Controllers/Post.php" {1} copy
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function store(Request $request)
+    {
+        // Mendapat data dari object title dari body yang dikirim oleh client 
+        $title = $request->title;
+        
+        return redirect('/users');
+    }
+}
+```
+
+### Kesimpulan
+> Request di Laravel adalah komponen fundamental yang memungkinkan aplikasi berinteraksi dengan pengguna melalui HTTP. Dengan menggunakan kelas Illuminate\Http\Request, pengembang dapat dengan mudah mengakses dan memanipulasi data yang diterima dari pengguna, serta mengelola alur kontrol aplikasi secara efisien.
