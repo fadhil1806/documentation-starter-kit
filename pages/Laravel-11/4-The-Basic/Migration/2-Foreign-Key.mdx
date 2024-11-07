@@ -1,0 +1,75 @@
+# Foreign Key Pada Migration
+Pada Laravel, sebuah foreign key dalam konteks migrasi merujuk pada konstruksi relasional antara dua tabel dalam basis data. Konsep ini memungkinkan Kita untuk menetapkan hubungan antarnya, misalnya, ketika Kita ingin menyimpan informasi tentang produk dan kategori, maka foreign key dapat digunakan untuk menghubungkan tabel produk dengan tabel kategori.
+
+Untuk membuat foreign key di Laravel, kita bisa menggunakan fungsi foreign() pada migration dan menentukan tindakan yang diambil ketika referensi tersebut dihapus atau diubah (misalnya, onDelete('cascade') untuk menghapus produk saat kategori dihapus).
+
+### Bagaimana Membuat Foreign Key Pada Migration
+Berikut adalah contoh sederhana untuk membuat relasi antara tabel products dan categories.
+
+- Langkah 1: Membuat Migration untuk categories
+Untuk membuat migration baru, gunakan perintah:
+
+```php
+php artisan make:migration create_categories_table
+```
+
+Isi migration create_categories_table:
+
+```php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCategoriesTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id(); // Primary key 'id'
+            $table->string('name'); // Nama kategori
+            $table->timestamps(); // Kolom 'created_at' dan 'updated_at'
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('categories');
+    }
+}
+```
+- Langkah 2: Membuat Migration untuk products
+```bash
+php artisan make:migration create_products_table
+```
+
+Isi migration create_products_table:
+
+```php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateProductsTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id(); // Primary key 'id'
+            $table->string('name'); // Nama produk
+            $table->text('description')->nullable(); // Deskripsi produk, bisa null
+            $table->decimal('price', 10, 2); // Harga produk
+            $table->unsignedBigInteger('category_id'); // Foreign key ke 'categories'
+
+            // Definisi foreign key
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
+            $table->timestamps(); // Kolom 'created_at' dan 'updated_at'
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('products');
+    }
+}
+```
