@@ -1,0 +1,14 @@
+# Cloudflare
+Cloudflare adalah alat command-line yang digunakan untuk menghubungkan aplikasi Anda ke jaringan Cloudflare. 
+Ini memungkinkan pengguna untuk membuat tunnel aman dari server lokal atau kontainer ke Cloudflare, 
+sehingga aplikasi dapat diakses melalui domain yang dikelola oleh Cloudflare tanpa perlu membuka port 
+di firewall atau menggunakan IP publik.
+
+### Fungsi Utama Cloudflare
+- Tunnel Aman: Cloudflare menciptakan tunnel yang aman antara server lokal dan Cloudflare, memungkinkan akses ke aplikasi tanpa memerlukan IP publik.
+- Pengalihan Lalu Lintas: Dengan menggunakan Cloudflare, lalu lintas dapat dialihkan melalui jaringan Cloudflare, yang menawarkan perlindungan tambahan terhadap serangan DDoS dan ancaman keamanan lainnya.
+- Caching dan CDN: Cloudflare memungkinkan penggunaan fitur caching dari Cloudflare, meningkatkan kecepatan akses konten dengan menyajikannya dari server terdekat dengan pengguna.
+
+### Cara Kerja Cloudflare
+Cloudflare berfungsi sebagai reverse proxy, yang berarti ia bertindak sebagai perantara antara pengguna yang mengakses aplikasi dan server tempat aplikasi tersebut berjalan. Ketika pengguna mengakses aplikasi melalui domain yang terhubung dengan Cloudflare, permintaan mereka akan diarahkan ke Cloudflare, yang kemudian meneruskan permintaan tersebut ke server lokal.
+Dengan demikian, Cloudflare membantu dalam mengoptimalkan performa dan keamanan aplikasi Anda dengan memanfaatkan infrastruktur global Cloudflare.

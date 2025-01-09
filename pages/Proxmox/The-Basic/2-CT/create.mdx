@@ -1,0 +1,17 @@
+# CT di Proxmox
+CT (Container) di Proxmox adalah Linux Containers (LXC), yang merupakan metode virtualisasi ringan yang memungkinkan beberapa 
+sistem operasi Linux berjalan secara terisolasi di atas kernel host yang sama. Kontainer ini lebih efisien dibandingkan mesin 
+virtual (VM) karena tidak memerlukan hypervisor dan berbagi kernel dengan host, sehingga mengurangi overhead dan meningkatkan 
+kinerja
+
+### Cara Membuat CT di Proxmox
+- Login ke Proxmox: Masuk ke antarmuka web Proxmox VE.
+- Pilih Storage: Navigasikan ke Datacenter > [Nama Node] > local.
+- Download Template: Klik pada CT Templates, lalu pilih template yang ingin digunakan dan klik Download
+- Buat Container:
+    1. Klik kanan pada node dan pilih Create CT.
+    2. Isi informasi pada tab General, seperti CT ID, Hostname, dan Password.
+    3. Pada tab Template, pilih template yang telah diunduh.
+    4. Atur pengaturan disk, CPU, RAM, dan jaringan sesuai kebutuhan.
+    5. Setelah semua pengaturan selesai, klik Finish untuk membuat kontainer
+    6. Jalankan Container.

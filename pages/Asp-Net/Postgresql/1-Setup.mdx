@@ -1,0 +1,36 @@
+## Set Up the .NET Core Project
+```cmd
+dotnet new webapi -n YourWebApiProjectName
+```
+
+Perintah diatas digunakan 
+untuk membuat proyek Web API baru dengan .NET Core.
+
+## Install Required NuGet Packages
+
+Untuk bekerja dengan PostgreSQL dan Entity Framework Core dalam proyek 
+.NET Core Web API Anda, Anda perlu menginstal paket-paket NuGet yang diperlukan. 
+Buka folder proyek Anda di terminal atau command prompt dan jalankan perintah berikut:
+
+```cmd
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+```
+
+## Configure the Database Connection
+Dalam proyek .NET Core Web API Anda, buka file **appsettings.json** atau **appsettings.Development.json**, 
+lalu tambahkan string koneksi database dengan detail server PostgreSQL:
+
+```json filename="appsettings.Development.json" {2,3,4} copy
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=ep-floral-mud-a16qqp74.ap-southeast-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=6fiDINeXA0bx"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}
+```

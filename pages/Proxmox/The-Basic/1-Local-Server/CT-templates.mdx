@@ -1,0 +1,17 @@
+# Apa itu CT Templates
+CT templates atau Container Templates di Proxmox adalah gambar sistem operasi yang telah dipra-instal dan dikemas 
+dalam bentuk arsip. Mereka digunakan untuk dengan cepat membuat kontainer baru di server Proxmox, 
+yang merupakan bagian dari teknologi virtualisasi yang lebih ringan dibandingkan dengan mesin virtual penuh.
+
+### Fungsi dan Penggunaan CT Templates
+- Membuat Kontainer: CT templates memungkinkan pengguna untuk membuat kontainer LXC dengan cepat tanpa perlu menginstal sistem operasi dari awal. Ini menghemat waktu dan usaha dalam pengaturan lingkungan baru.
+- Berbagai Pilihan Sistem Operasi: Proxmox menyediakan berbagai template untuk distribusi Linux populer seperti Ubuntu, Debian, AlmaLinux, dan lainnya. Pengguna dapat memilih template sesuai kebutuhan aplikasi yang akan dijalankan25.
+- Pengelolaan Melalui Antarmuka Web: Pengguna dapat mengunduh dan mengelola CT templates melalui antarmuka web Proxmox dengan mudah. Cukup navigasi ke Datacenter > [Nama Server Anda] > local > CT templates, lalu pilih template yang diinginkan untuk diunduh.
+
+### Cara Mengunduh CT Templates
+Untuk mengunduh CT templates di Proxmox, Anda dapat mengikuti langkah-langkah berikut:
+
+1. Login ke Proxmox: Masuk ke antarmuka web Proxmox Anda.
+2. Navigasi ke Storage Local: Klik pada node server Anda, lalu pilih local.
+3. Pilih CT Templates: Di sidebar, klik pada CT Templates, kemudian klik pada tombol Templates.
+4. Pilih dan Unduh Template: Dari daftar yang muncul, pilih template yang ingin Anda unduh dan klik tombol Download. Setelah proses selesai, Anda akan melihat notifikasi bahwa unduhan berhasil

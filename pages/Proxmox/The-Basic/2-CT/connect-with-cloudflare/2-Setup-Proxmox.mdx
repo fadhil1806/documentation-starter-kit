@@ -1,0 +1,52 @@
+# Setup awal
+Untuk menghubungkan Proxmox dengan Cloudflare dan membuat subdomain untuk website kita, 
+berikut adalah langkah-langkah yang harus diikuti secara detail:
+
+### Membuat Container (CT) di Proxmox
+- Login ke Proxmox: Masuk ke antarmuka web Proxmox Anda.
+- Download Template:
+    1. Navigasi ke Datacenter > [Nama Node] > local.
+    2. Klik pada CT Templates dan pilih template yang ingin Anda gunakan (misalnya, Ubuntu). Klik Download.
+- Buat Container:
+    - Klik kanan pada node dan pilih Create CT.
+    - Isi informasi dasar seperti CT ID, Hostname, dan Password.
+    - Pada tab Template, pilih template yang telah diunduh.
+    - Tentukan ukuran disk, jumlah CPU, dan RAM sesuai kebutuhan Anda.
+    - Pada tab Network, atur IP statis atau DHCP sesuai konfigurasi jaringan Anda.
+    - Setelah semua pengaturan selesai, klik Finish untuk membuat kontainer.
+    - Start Container: Setelah kontainer dibuat, klik kanan pada kontainer dan pilih Start untuk menjalankannya.
+
+### Verify Cloudflared di Container
+- Akses Kontainer: Gunakan SSH atau konsol Proxmox untuk masuk ke kontainer yang telah Anda buat.
+- Upgrade package
+
+    ```bash
+    sudo apt upgrade -y
+    ```
+- Install Curl
+    ```bash
+    apt install curl -y
+    ```
+
+- Create Tunnels di Cloudflare
+    - Masuk ke Akun Cloudflare
+    - Akses Cloudflare Zero Trust
+    - Pilih Network, lalu ke Tunnels
+    - Membuat Tunnel Baru
+        - Klik Create Tunnel
+        - Masukkan Nama Tunnel
+        - Pilih Debian, salin connecter, dan paste ke container yang kita buat
+
+            ```bash filename="example.bash"
+            curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb && sudo cloudflared service install eyJhIjoiMjM4ZTkzNDE0NjJiN2VmNTIwMTZmNzJjZmNjOWMzYjYiLCJ0IjoiNDQwZTU1OWUtYmI4OC00MTNjLWI3NTAtOTEyYzE3Yjk5OTA4IiwicyI6Ik9XUXdaak5sWlRBdFpUTmlOaTAwTkRWaUxUa3pNemN0TXprd1lUbGhPVGRqTkdKbSJ9
+            ```
+
+        - Next Jika sudah connected
+        - Masukan subdomain yang ingin di buat, lalu domain nya juga, Path default saja.
+        - Pilih Type Htpp, lalu sesuaikan ip dengan container di Proxmox
+            1. Masuk ke container, masukan perintah
+                ```bash 
+                ip a
+                ``` 
+            2. Ambil Ip, lalu masuk cloudflare, paste kan alamat ip tersebut
+
