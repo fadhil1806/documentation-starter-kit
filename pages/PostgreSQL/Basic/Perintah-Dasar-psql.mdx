@@ -1,0 +1,47 @@
+### Masuk ke psql
+
+Untuk masuk ke psql, gunakan perintah:
+```bash
+psql
+```
+
+Atau untuk masuk dengan spesifikasi host, user, dan database:
+```bash
+psql -h host -U username -d database_name
+```
+
+### Daftar Database
+Untuk melihat daftar semua database:
+```bash
+\l
+```
+
+### Ganti Database:
+Untuk berpindah ke database lain:
+```bash
+\c database_name username
+```
+
+### Tampilkan Tabel:
+Untuk melihat tabel yang ada dalam database:
+```bash
+\dt
+```
+
+### Deskripsi Tabel:
+Untuk melihat struktur tabel tertentu:
+```bash
+\d table_name
+```
+
+### Menampilkan Versi PostgreSQL:
+Untuk mengetahui versi PostgreSQL yang sedang digunakan:
+```bash
+SELECT version();
+```
+
+### Keluar dari psql:
+Untuk keluar dari antarmuka psql:
+```bash
+\q
+```

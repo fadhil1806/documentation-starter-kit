@@ -1,0 +1,41 @@
+Berikut adalah beberapa perintah SQL dasar untuk mengelola tabel di PostgreSQL, termasuk cara membuat, menghapus, dan memilih data dari tabel.
+
+### Membuat Tabel
+Untuk membuat tabel baru, gunakan perintah CREATE TABLE. Berikut adalah contoh sintaksnya:
+```sql
+CREATE TABLE nama_tabel (
+    kolom1 tipe_data [keterbatasan],
+    kolom2 tipe_data [keterbatasan],
+    ...
+);
+```
+
+contoh
+
+```sql
+CREATE TABLE Karyawan (
+    ID SERIAL PRIMARY KEY,
+    Nama VARCHAR(100),
+    Umur INT,
+    Gaji NUMERIC(10, 2)
+);
+```
+
+### Menghapus Tabel
+Untuk menghapus tabel yang sudah ada, gunakan perintah DROP TABLE. Anda juga dapat menggunakan IF EXISTS untuk menghindari error jika tabel tidak ada.
+```sql
+DROP TABLE IF EXISTS nama_tabel;
+```
+
+### Memilih Data dari Tabel
+Untuk mengambil data dari tabel, gunakan perintah SELECT. Anda dapat memilih semua kolom atau kolom tertentu.
+```sql
+SELECT * FROM nama_tabel;  -- Memilih semua kolom
+
+SELECT kolom1, kolom2 FROM nama_tabel;  -- Memilih kolom tertentu
+```
+
+contoh
+```sql
+SELECT * FROM Karyawan;
+```
